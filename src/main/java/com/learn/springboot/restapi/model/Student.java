@@ -2,10 +2,10 @@ package com.learn.springboot.restapi.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Data
 @Entity
@@ -13,10 +13,20 @@ import javax.persistence.Id;
 public class Student {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
     private String email;
+
+    // this will insert default timestamp
+    @Column(name = "created_at")
+    @CreationTimestamp
+    private Timestamp createdAt;
+
+    @Column(name = "updated_at")
+    @CreationTimestamp
+    private Timestamp updateAt;
+
 
     public Student(String name, String email) {
         this.name = name;
