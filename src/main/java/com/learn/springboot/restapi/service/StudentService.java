@@ -1,5 +1,6 @@
 package com.learn.springboot.restapi.service;
 
+import com.learn.springboot.restapi.exceptionhandling.StudentNotFoundException;
 import com.learn.springboot.restapi.model.Student;
 import com.learn.springboot.restapi.repository.StudentRepository;
 import lombok.NonNull;
@@ -25,6 +26,10 @@ public class StudentService {
         return studentRepository.findAll(Sort.by(Sort.Direction.DESC, "updateAt"));
     }
 
+    public Student getStudent(int id) {
+        return studentRepository.findById(id).orElseThrow(()->new StudentNotFoundException(id));
+    }
+
     public Student saveStudent(Student student) {
         return studentRepository.save(new Student(student.getName(), student.getEmail()));
     }
@@ -41,5 +46,10 @@ public class StudentService {
 
         return student;
 
+    }
+
+    public String deleteStudent(int id){
+        studentRepository.deleteById(id);
+        return "student deleted";
     }
 }
