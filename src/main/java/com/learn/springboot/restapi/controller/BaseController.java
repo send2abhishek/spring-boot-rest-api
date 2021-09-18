@@ -14,7 +14,7 @@ public class BaseController {
     private String studentName;
 
     @GetMapping("/create")
-    public Student homePage(){
-        return new Student(1,"Abhishek","bangalore");
+    public Student homePage() {
+        return new Student(1, "Abhishek", "bangalore");
     }
 }

@@ -1,10 +1,8 @@
 package com.learn.springboot.restapi.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class Student {
 
     private int id;
