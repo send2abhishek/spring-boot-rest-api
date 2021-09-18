@@ -19,10 +19,12 @@ public class Student {
     private String email;
 
     // this will insert default timestamp
+
     @Column(name = "created_at")
     @CreationTimestamp
     private Timestamp createdAt;
 
+    
     @Column(name = "updated_at")
     @CreationTimestamp
     private Timestamp updateAt;

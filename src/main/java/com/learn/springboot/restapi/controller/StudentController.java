@@ -33,4 +33,12 @@ public class StudentController {
                 (new StudentSaveResponse("student created", studentService.saveStudent(student)), HttpStatus.CREATED);
 
     }
+
+    @PutMapping("/update")
+    public ResponseEntity<StudentSaveResponse> update(@RequestBody Student student) {
+
+        return new ResponseEntity<StudentSaveResponse>
+                (new StudentSaveResponse("student updated", studentService.updateStudent(student)), HttpStatus.CREATED);
+
+    }
 }
