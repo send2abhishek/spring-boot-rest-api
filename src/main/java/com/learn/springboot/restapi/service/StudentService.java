@@ -2,6 +2,7 @@ package com.learn.springboot.restapi.service;
 
 import com.learn.springboot.restapi.exceptionhandling.StudentNotFoundException;
 import com.learn.springboot.restapi.model.Student;
+import com.learn.springboot.restapi.model.StudentResponse;
 import com.learn.springboot.restapi.repository.StudentRepository;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,9 @@ public class StudentService {
     public String deleteStudent(int id){
         studentRepository.deleteById(id);
         return "student deleted";
+    }
+
+    public List<StudentResponse> getStudentByName(String name){
+        return studentRepository.findByName(name);
     }
 }

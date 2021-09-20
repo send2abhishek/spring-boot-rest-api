@@ -1,6 +1,7 @@
 package com.learn.springboot.restapi.controller;
 
 import com.learn.springboot.restapi.model.Student;
+import com.learn.springboot.restapi.model.StudentResponse;
 import com.learn.springboot.restapi.response.StudentSaveResponse;
 import com.learn.springboot.restapi.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,5 +59,10 @@ public class StudentController {
         responseEntity.put("id",1);
         responseEntity.put("student",new Student("Abhishek","send2abhishek@live.com"));
         return new ResponseEntity<>(responseEntity, HttpStatus.OK);
+    }
+
+    @GetMapping("/getByName/{name}")
+    public ResponseEntity<List<StudentResponse>> findOne(@PathVariable String name) {
+        return new ResponseEntity<>(studentService.getStudentByName(name), HttpStatus.OK);
     }
 }
