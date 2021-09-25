@@ -7,7 +7,8 @@ public interface StudentResponse {
 
     int getId();
     String getEmail();
-    List<AddressResponse> getAddress();
+    AddressResponse getAddress();
+    List<Subjects> getSubjects();
 
 }
 

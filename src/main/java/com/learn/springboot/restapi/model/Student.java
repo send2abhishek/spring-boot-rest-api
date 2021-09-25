@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Data
 @Entity
@@ -33,9 +34,8 @@ public class Student {
             cascade = CascadeType.ALL)
     private Address address;
 
-    public Address getAddress() {
-        return address;
-    }
+    @OneToMany(mappedBy = "student")
+    private List<Subjects> subjects;
 
     public Student(String name, String email) {
         this.name = name;
