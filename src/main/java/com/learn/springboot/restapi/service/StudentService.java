@@ -23,7 +23,7 @@ public class StudentService {
     }
 
     public List<StudentResponse> getAllStudents() {
-        return studentRepository.findAllBy();
+        return studentRepository.findByNameAndAddressPinCodeAndSubjectsName("Aryan",800027,"Android");
 
     }
 

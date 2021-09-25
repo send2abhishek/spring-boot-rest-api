@@ -13,4 +13,5 @@ public interface StudentRepository extends JpaRepository<Student,Integer> {
     List<StudentResponse> findByName(String name);
     List<Student> findByNameAndEmail(String name, String email);
     List<StudentResponse> findAllBy();
+    List<StudentResponse> findByNameAndAddressPinCodeAndSubjectsName(String name,int pinCode,String subjectName);
 }
