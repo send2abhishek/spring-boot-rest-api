@@ -1,5 +1,7 @@
 package com.learn.springboot.restapi.model;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -8,38 +10,34 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Data
-@Entity
 @NoArgsConstructor
-public class Student {
+@Entity
+public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
-    private String email;
-
-    // this will insert default timestamp
-
+    private String streetName;
+    private int pinCode;
     @Column(name = "created_at")
     @CreationTimestamp
     private Timestamp createdAt;
 
-    
+
     @Column(name = "updated_at")
     @CreationTimestamp
     private Timestamp updateAt;
 
-    @OneToOne(mappedBy = "student", fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL)
-    private Address address;
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "student_id")
+    @JsonIgnore(value = true)
+    private Student student;
 
-    public Address getAddress() {
-        return address;
+    public Address(String streetName, int pinCode,Student student) {
+        this.streetName = streetName;
+        this.pinCode = pinCode;
+        this.student=student;
     }
 
-    public Student(String name, String email) {
-        this.name = name;
-        this.email = email;
-    }
 
 }

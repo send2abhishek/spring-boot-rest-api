@@ -6,7 +6,6 @@ import com.learn.springboot.restapi.model.StudentResponse;
 import com.learn.springboot.restapi.repository.StudentRepository;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -23,15 +22,17 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public List<Student> getAllStudents() {
-        return studentRepository.findAll(Sort.by(Sort.Direction.DESC, "updateAt"));
+    public List<StudentResponse> getAllStudents() {
+        return studentRepository.findAllBy();
+
     }
 
     public Student getStudent(int id) {
-        return studentRepository.findById(id).orElseThrow(()->new StudentNotFoundException(id));
+        return studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException(id));
     }
 
     public Student saveStudent(Student student) {
+
         return studentRepository.save(new Student(student.getName(), student.getEmail()));
     }
 
@@ -49,7 +50,7 @@ public class StudentService {
 
     }
 
-    public String deleteStudent(int id){
+    public String deleteStudent(int id) {
         studentRepository.deleteById(id);
         return "student deleted";
     }

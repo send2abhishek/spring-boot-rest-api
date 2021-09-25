@@ -1,11 +1,14 @@
 package com.learn.springboot.restapi.model;
 
-import lombok.Value;
 
-@Value
-public class StudentResponse {
+import java.util.List;
 
-    String name;
-    String email;
+public interface StudentResponse {
+
+    int getId();
+    String getEmail();
+    List<AddressResponse> getAddress();
 
 }
+
+
